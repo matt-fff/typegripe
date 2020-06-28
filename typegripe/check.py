@@ -19,23 +19,27 @@ class WarnCode(Enum):
 
 
 @dataclass
-class Warning:
+class TypeWarning:
     code: WarnCode
     description: str
     line_num: int
     name: Optional[str]
 
     def __eq__(self, other):
-        if not isinstance(other, Warning):
+        if not isinstance(other, TypeWarning):
             return False
 
-        return self.code == other.code and self.line_num == other.line_num and self.name == other.name
+        return (
+            self.code == other.code
+            and self.line_num == other.line_num
+            and self.name == other.name
+        )
 
 
 config = Config()
 
 
-def check_file(path: pathlib.Path) -> List[Warning]:
+def check_file(path: pathlib.Path) -> List[TypeWarning]:
     with path.open("r") as source_file:
         source = "\n".join(source_file.readlines())
         code = ast.parse(
@@ -52,7 +56,7 @@ def check_file(path: pathlib.Path) -> List[Warning]:
     return warnings
 
 
-def check_ast_object(obj) -> List[Warning]:
+def check_ast_object(obj) -> List[TypeWarning]:
     # TODO consider the effects of very deep recursion
     sub_objs = []
     warnings = []
@@ -72,7 +76,12 @@ def check_ast_object(obj) -> List[Warning]:
     elif isinstance(obj, ast.arg):
         if obj.annotation is None:
             warnings.append(
-                Warning(code=WarnCode.UNTYPED_ARG, name=obj.arg, line_num=obj.lineno, description=f"argument '{obj.arg}' has no annotation")
+                TypeWarning(
+                    code=WarnCode.UNTYPED_ARG,
+                    name=obj.arg,
+                    line_num=obj.lineno,
+                    description=f"argument '{obj.arg}' has no annotation",
+                )
             )
     elif isinstance(obj, Iterable):
         sub_objs = list(obj)
