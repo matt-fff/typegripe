@@ -10,4 +10,15 @@ check-type:
 test:
 	poetry run pytest tests
 
-ci-check: check-format check-type test
+bandit:
+	poetry run bandit -r typegripe
+
+flake8:
+	poetry run flake8 --max-complexity 10 typegripe tests
+
+pylint:
+	poetry run pylint typegripe tests
+
+lint: flake8 pylint
+
+ci-check: check-format check-type lint bandit test

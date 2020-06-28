@@ -2,7 +2,7 @@ import ast
 import pathlib
 from dataclasses import dataclass
 from enum import Enum, unique
-from typing import List, Iterable, Tuple, Optional
+from typing import List, Tuple, Optional
 
 from loguru import logger
 
@@ -83,7 +83,7 @@ def check_ast_object(obj) -> List[TypeWarning]:
                     description=f"argument '{obj.arg}' has no annotation",
                 )
             )
-    elif isinstance(obj, Iterable):
+    elif isinstance(obj, (set, list)):
         sub_objs = list(obj)
     elif config.warn_on_unimplemented:
         logger.warning(f"{type(obj)} is not yet supported.")

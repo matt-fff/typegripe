@@ -13,6 +13,23 @@ pytest = "^5.2"
 ipdb = "^0.13.3"
 black = "^19.10b0"
 mypy = "^0.782"
+flake8 = "^3.8.3"
+pylint = "^2.5.3"
+mccabe = "^0.6.1"
+bandit = "^1.6.2"
+
+[tool.black]
+line-length = 80
+target-version = ['py36', 'py37', 'py38']
+skip-numeric-underscore-normalization = true
+
+[tool.pylint.messages_control]
+disable = """
+missing-docstring,bad-continuation,fixme
+"""
+
+[tool.pylint.reports]
+output-format = "colorized"
 
 [build-system]
 requires = ["poetry>=0.12"]

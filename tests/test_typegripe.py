@@ -12,7 +12,7 @@ def test_version():
     assert __version__ == "0.1.0"
 
 
-@pytest.mark.parametrize("filename", ["valid_function.py", "empty.py",])
+@pytest.mark.parametrize("filename", ["valid_function.py", "empty.py"])
 def test_valid_files(filename: str):
     assert [] == check.check_file(pathlib.Path(f"{FIXTURE_PATH}/{filename}"))
 
@@ -39,7 +39,9 @@ def test_valid_files(filename: str):
         ),
     ],
 )
-def test_invalid_files(filename: str, expected_warnings: List[check.TypeWarning]):
+def test_invalid_files(
+    filename: str, expected_warnings: List[check.TypeWarning]
+):
     assert expected_warnings == check.check_file(
         pathlib.Path(f"{FIXTURE_PATH}/{filename}")
     )
