@@ -3,13 +3,9 @@ from typing import List
 
 import pytest
 
-from typegripe import __version__, check
+from typegripe import check
 
 FIXTURE_PATH = "./tests/file_fixtures"
-
-
-def test_version():
-    assert __version__ == "0.1.0"
 
 
 @pytest.mark.parametrize("filename", ["valid_function.py", "empty.py"])

@@ -1,8 +1,9 @@
 [tool.poetry]
 name = "typegripe"
-version = "0.1.0"
+version = "v0.1.0"
 description = "mypy tests for correct type annotations. typegripe complains if you didn't add any."
 authors = ["Matt White <code@typenil.com>"]
+readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.8"
