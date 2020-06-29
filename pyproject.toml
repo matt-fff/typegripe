@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "typegripe"
 version = "0.1.0"
-description = ""
+description = "mypy tests for correct type annotations. typegripe complains if you didn't add any."
 authors = ["Matt White <code@typenil.com>"]
 
 [tool.poetry.dependencies]
@@ -17,10 +17,13 @@ flake8 = "^3.8.3"
 pylint = "^2.5.3"
 mccabe = "^0.6.1"
 bandit = "^1.6.2"
+pytest-cov = "^2.10.0"
+pytest-sugar = "^0.9.3"
+pytest-xdist = "^1.32.0"
 
 [tool.black]
 line-length = 80
-target-version = ['py36', 'py37', 'py38']
+target-version = ['py38']
 skip-numeric-underscore-normalization = true
 
 [tool.pylint.messages_control]
