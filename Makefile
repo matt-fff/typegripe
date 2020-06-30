@@ -27,4 +27,6 @@ pylint:
 
 lint: flake8 pylint
 
+code-quality: format check-type lint bandit test
+
 ci-check: check-format check-type lint bandit test-cov

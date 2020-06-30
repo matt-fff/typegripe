@@ -8,6 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.8"
 loguru = "^0.5.1"
+unsync = "^1.2.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
